@@ -1,5 +1,8 @@
 import Sequelize from 'sequelize'
 import { connection } from '../database/database'
+import { Budget } from './Budget'
+import { Customer } from './Customer'
+import { Order } from './Order'
 
 export const Vehicle = connection.define("vehicle", {
     manufacturer: {
@@ -22,4 +25,30 @@ export const Vehicle = connection.define("vehicle", {
         type: Sequelize.STRING,
         allowNull: true,
     },
+    customer_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: Customer,
+            key: 'id'
+        }
+    },
+    budget_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: Budget,
+            key: 'id'
+        }
+    },
+    order_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: Order,
+            key: 'id'
+        }
+    }
 })
+
+//Vehicle.sync({force: true})

@@ -1,6 +1,10 @@
 import { Request, Response } from 'express'
-import {CustomerInterface} from '../interfaces/CustomerInterface'
 import { cpf } from 'cpf-cnpj-validator'
+
+import { Customer } from '../models/Customer'
+import { Budget } from '../models/Budget'
+import { Order } from '../models/Order'
+import { Vehicle } from '../models/Vehicle'
 
 class CustomerController {
 
@@ -38,7 +42,7 @@ class CustomerController {
             return
         }
 
-        const customer: CustomerInterface = {
+        const customer = {
             name: customerName,
             cpf: customerCpf,
             address: req.body.address,
@@ -46,7 +50,12 @@ class CustomerController {
             email: req.body.email
         }
 
-        res.status(200)
+        //Customer.create(customer)
+        Vehicle.create()
+        //Budget.create()
+        //Order.create()
+
+        res.status(201)
         res.send({
             Message: "Ok"
         })

@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize'
 import { connection } from '../database/database'
+import { Vehicle } from './Vehicle'
 
 export const Customer = connection.define("customer", {
     name: {
@@ -7,7 +8,7 @@ export const Customer = connection.define("customer", {
         allowNull: false
     },
     cpf: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER(),
         allowNull: false
     },
     address: {
@@ -23,6 +24,8 @@ export const Customer = connection.define("customer", {
         allowNull: true,
     },
 })
+
+//Customer.sync({force: true})
 
 
 
